@@ -10,12 +10,6 @@
         {
             // create a songs model to perform the methods.
             $this->model = $this->loadModel('photo');
-            
-            $this->view->uploadError = NULL;
-
-            if (isset($_POST["submit"])) {
-                $this->view->uploadError = $this->model->upload();
-            }
 
             $this->view->photo = $this->model->getAllPhotos();
 
@@ -26,6 +20,16 @@
         public function upload(){
             $this->model = $this->loadModel('photo');
             $this->view->render('photo/upload');
+        }
+
+        public function upload_action(){
+            $this->model = $this->loadModel('photo');
+
+            if (isset($_POST["submit"])) {
+                $this->model->upload();
+            }
+
+            header('location: ' . URL . 'photo/upload');
         }
     }
 

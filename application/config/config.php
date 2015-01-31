@@ -72,6 +72,8 @@ define('HASH_COST_FACTOR', '10');
  * Configuration for: Feedback messages
  * This is the place where you define your feed messages
  */
+
+//Login/Register Error Messages
 define('FEEDBACK_USERNAME_FIELD_EMPTY', 'FILL YO USERNAME IN GURL... UNF');
 define('FEEDBACK_PASSWORD_FIELD_EMPTY', 'FILL YO PASSWORD IN GURL... UNF');
 define('FEEDBACK_LOGIN_FAILED', 'FILL IN YO RIGHT STATS GURL... UNF');
@@ -86,3 +88,13 @@ define('FEEDBACK_EMAIL_NOT_VALID', "YOU THINK I'M CRAY CRAY? THAT IS NOT A REAL 
 define('FEEDBACK_UNKNOWN_ERROR', "SIR?? SIR??!!?! WHAT ARE YOU DOING");
 define('FEEDBACK_USERNAME_ALREADY_TAKEN', "Username is already taken");
 define('FEEDBACK_EMAIL_ALREADY_TAKEN', "Email is already taken");
+
+//Photo's Error Messages
+define('FEEDBACK_NOT_AN_IMAGE', "File is not an image.");
+define('FEEDBACK_NO_GPS_LOCATION', "File has no GPS location.");
+define('FEEDBACK_FILE_ALREADY_EXISTS', "Sorry, file already exists.");
+define('FEEDBACK_FILE_TOO_LARGE', "Sorry, your file is too large.");
+define('FEEDBACK_FILE_NOT_VALID', "Sorry, only JPG, JPEG, PNG & GIF files are allowed.");
+define('FEEDBACK_FILE_NOT_UPLOADED', "Sorry, your file was not uploaded.");
+define('FEEDBACK_ERROR_UPLOADING_FILE', "Sorry, there was an error uploading your file.");
+define('FEEDBACK_FILE_HAS_BEEN_UPLOADED', "The file has been uploaded.");

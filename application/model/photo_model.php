@@ -23,7 +23,7 @@
 			        $uploadOk = 1;
 			    } else {
 			    	//$_SESSION["feedback_negative"][] = "File is not an image";
-			        $uploadError .=  "File is not an image.<br>";
+			        $_SESSION['feedback_negative'] [] = FEEDBACK_NOT_AN_IMAGE;
 			        $uploadOk = 0;
 			    }
 			}
@@ -42,37 +42,37 @@
 				$longitude = $this->gps($data["GPSLongitude"], $data['GPSLongitudeRef']);
 			}
 			else{
-				$uploadError .=  "File has no GPS location.<br>";
+				$_SESSION['feedback_negative'] [] = FEEDBACK_NO_GPS_LOCATION;
 			    $uploadOk = 0;
 			}
 
 			// Check if file already exists
 			if (file_exists($target_file)) {
-			    $uploadError .=  "Sorry, file already exists.<br>";
+				$_SESSION['feedback_negative'] [] = FEEDBACK_FILE_ALREADY_EXISTS;
 			    $uploadOk = 0;
 			}
 			// Check file size
 			if ($_FILES["fileToUpload"]["size"] > 50000000) {
-			    $uploadError .=  "Sorry, your file is too large.<br>";
+				$_SESSION['feedback_negative'] [] = FEEDBACK_FILE_TOO_LARGE;
 			    $uploadOk = 0;
 			}
 			// Allow certain file formats
 			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 			&& $imageFileType != "gif" ) {
-			    $uploadError .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>";
+				$_SESSION['feedback_negative'] [] = FEEDBACK_FILE_NOT_VALID;
 			    $uploadOk = 0;
 			}
 			// Check if $uploadOk is set to 0 by an error
 			if ($uploadOk == 0) {
-			    $uploadError .=  "Sorry, your file was not uploaded.<br>";
-			    return $uploadError;
+				$_SESSION['feedback_negative'] [] = FEEDBACK_FILE_NOT_UPLOADED;
 			// if everything is ok, try to upload file
 			} else {
 			    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 			    	$this->addPhoto(basename( $_FILES["fileToUpload"]["name"]), $longitude, $latitude, 0);
-			        return "The file ". basename( $_FILES["fileToUpload"]["name"]) . " has been uploaded.";
+			    	$_SESSION['feedback_positive'] [] = FEEDBACK_FILE_HAS_BEEN_UPLOADED;
+			        echo "The file ". basename( $_FILES["fileToUpload"]["name"]) . " has been uploaded.";
 			    } else {
-			        return "Sorry, there was an error uploading your file.<br>";
+			    	$_SESSION['feedback_negative'] [] = FEEDBACK_ERROR_UPLOADING_FILE;
 			    }
 			}
 		}
