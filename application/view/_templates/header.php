@@ -27,6 +27,7 @@
         <a href="<?php echo URL; ?>songs">songs</a>
         <a href="<?php echo URL; ?>baas">baas</a>
         <a href="<?php echo URL; ?>blogs">blogs</a>
-        <a href="<?php echo URL; ?>photo">photo</a>
         <a href="<?php echo URL; ?>login">login</a>
+        <a href="<?php echo URL; ?>photo">photo</a>
+        <a href="<?php echo URL; ?>game">game</a>
     </div>

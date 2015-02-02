@@ -1,8 +1,7 @@
 <?php
 
 	Class photoModel {
-		public function getAllPhotos()
-	    {
+		public function getAllPhotos() {
 	        $sql = "SELECT id, file, longitude, latitude, author FROM photo";
 	        $query = $this->db->prepare($sql);
 	        $query->execute();
