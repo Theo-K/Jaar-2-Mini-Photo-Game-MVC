@@ -61,14 +61,16 @@
 			// Check if $uploadOk is set to 0 by an error
 			if ($uploadOk == 0) {
 				$_SESSION['feedback_negative'] [] = FEEDBACK_FILE_NOT_UPLOADED;
+				return false;
 			// if everything is ok, try to upload file
 			} else {
 			    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 			    	$this->addPhoto(basename( $_FILES["fileToUpload"]["name"]), $longitude, $latitude, 0);
 			    	$_SESSION['feedback_positive'] [] = FEEDBACK_FILE_HAS_BEEN_UPLOADED;
-			        echo "The file ". basename( $_FILES["fileToUpload"]["name"]) . " has been uploaded.";
+			       	return true;
 			    } else {
 			    	$_SESSION['feedback_negative'] [] = FEEDBACK_ERROR_UPLOADING_FILE;
+			    	return false;
 			    }
 			}
 		}

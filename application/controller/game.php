@@ -24,6 +24,20 @@ Class Game extends Controller {
 	}
 
 	public function checkLocation($id){
-		echo json_encode();
+		$this->model = $this->loadModel('game');
+
+        $location = $this->model->checkLocation($id);
+
+        $latlng = array("lat" => $location->latitude, "lng" => $location->longitude);
+        
+        echo json_encode($latlng);
+	}
+
+	public function score($id, $distance){
+		$this->model = $this->loadModel('game');
+
+		$this->model->insertScore($id, $distance,  $_SESSION['user_id']);
+
+		$this->view->render('game/score');	
 	}
 }

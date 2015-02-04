@@ -1,4 +1,8 @@
 <div class="container">
-    <a href="<?php echo URL; ?>photo">Choose a picture</a>
-    <a href="<?php echo URL; ?>game/play">Select a random picture</a>
+
+  <div class="game_button">
+    <a class="" href="<?php echo URL; ?>photo/index">Kies een foto</a>
+    <a class="" href="<?php echo URL; ?>game/play">Kies een random foto</a>
+  </div>
+
 </div>

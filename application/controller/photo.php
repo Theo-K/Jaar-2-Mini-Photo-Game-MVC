@@ -19,6 +19,12 @@
 
         public function upload(){
             $this->model = $this->loadModel('photo');
+
+
+            if ($this->model->getAllPhotos() == true) {
+                header('location: ' . URL . 'blogs/index');
+            }
+
             $this->view->render('photo/upload');
         }
 

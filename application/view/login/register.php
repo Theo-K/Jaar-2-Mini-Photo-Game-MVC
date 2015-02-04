@@ -1,42 +1,21 @@
 <div class="container">
 
-	<?php $this->renderFeedbackMessages(); ?>
-	
-	<div class="register-default-box">
-		
-		<h1>Register</h1>
-		
-		<form method="post" action="<?php echo URL; ?>login/register_action" name="registerform">
+    <!-- echo out the system feedback (error and success messages) -->
+    <?php $this->renderFeedbackMessages(); ?>
 
-			<label for="login_input_username">
-				Username
-				<span style="display: block; font-size: 14px; color: #999;">(only letters and numbers, 2 to 64 characters)</span>
-			</label>
-			<input id="login_input_username" class="login_input" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" />
+    <!-- login box on left side -->
+    <div class="login-box" style="width: 50%; display: block;">
+        <h2>Register a new account</h2>
 
-			<label for="login_input_email">
-				User's email
-				<span style="display: block; font-size: 14px; color: #999;">
-				(please provide a <span style="text-decortation: underline; color: mediumvioletred;"> real email address</span>,
-				you'll get a verification mail with an activation link)
-				</span>
-			</label>
-			<input id="login_input_email" class="login_input" type="email" name="user_email" />
+        <!-- register form -->
+        <form method="post" action="<?php echo URL; ?>login/register_action">
+            <!-- the user name input field uses a HTML5 pattern check -->
+            <input type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" placeholder="Username (letters/numbers, 2-64 chars)" />
+            <input type="text" name="user_email" placeholder="email address (a real address)" />
+            <input type="password" name="user_password_new" pattern=".{6,}" placeholder="Password (6+ characters)" autocomplete="off" />
+            <input type="password" name="user_password_repeat" pattern=".{6,}" placeholder="Repeat your password" autocomplete="off" />
 
-			<label for="login_input_password_new">
-				Password (min. 6 characters!
-				<span class="login-form-password-pattern-reminder">
-					Please note: using a long sentence as a password is much safer then something like "!c00lPa$$w0rd").
-				</span>
-			</label>
-			<input id="login_input_password_new" class="login_input" type="password" name="user_password_new" pattern=".{6,}" autocomplete="off" />
-
-			<label for="login_input_password_repeat">Repeat password</label>
-			<input id="login_input_password_repeat" class="login_input" type="password" name="user_password_repeat" pattern=".{6,}" autocomplete="off" />
-
-			<input type="submit" name="register" value="Register" />
-		</form>
-
-	</div>
-
+            <input type="submit" value="Register" />
+        </form>
+    </div>
 </div>

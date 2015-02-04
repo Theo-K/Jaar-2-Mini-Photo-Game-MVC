@@ -6,11 +6,10 @@ class Auth
 	{
 		Session::init();
 
-		if (!isset($_SESSION['user_logged_in']))
-		{
+		if (!isset($_SESSION['user_logged_in'])) {
 			Session::destroy();
 			header('location: ' . URL . 'login');
 			exit();
 		}
- }
+	}
 }

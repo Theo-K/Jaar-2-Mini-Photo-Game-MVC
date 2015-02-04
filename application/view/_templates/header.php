@@ -1,33 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
+    <!-- META -->
     <meta charset="utf-8">
-    <title>MINI</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- JS -->
-    <!-- please note: The JavaScript files are loaded in the footer to speed up page construction -->
-    <!-- See more here: http://stackoverflow.com/q/2105327/1114320 -->
-
     <!-- CSS -->
-    <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo URL; ?>css/style.css" />
 </head>
 <body>
-    <!-- logo -->
-    <div class="logo">
-        MINI
-    </div>
+    <!-- wrapper, to center website -->
+    <div class="wrapper">
 
-    <!-- navigation -->
-    <div class="navigation">
-        <a href="<?php echo URL; ?>">home</a>
-        <a href="<?php echo URL; ?>home/exampleone">subpage</a>
-        <a href="<?php echo URL; ?>home/exampletwo">subpage 2</a>
-        <a href="<?php echo URL; ?>songs">songs</a>
-        <a href="<?php echo URL; ?>baas">baas</a>
-        <a href="<?php echo URL; ?>blogs">blogs</a>
-        <a href="<?php echo URL; ?>login">login</a>
-        <a href="<?php echo URL; ?>photo">photo</a>
-        <a href="<?php echo URL; ?>game">game</a>
-    </div>
+        <!-- logo -->
+        <div class="logo">GeoApp</div>
+
+        <!-- navigation -->
+        <ul class="navigation">
+            <li <?php if ($this->checkForActiveController($filename, "home")) { echo ' class="active" '; } ?> >
+                <a href="<?php echo URL; ?>home/index">Index</a>
+            </li>
+
+
+            <?php if (Session::get('user_logged_in') == true) { ?>
+                <!-- for logged in users -->
+                <li <?php if ($this->checkForActiveController($filename, "dashboard")) { echo ' class="active" '; } ?> >
+                    <a href="<?php URL; ?>../dashboard/index">Dashboard</a>
+                </li>            
+                <li>
+                	<a href="<?php URL; ?>../photo/index">Photos</a>
+                </li>
+                <li>
+					<a href="<?php URL; ?>../game/index">Play</a>
+                </li>
+            <?php } else { ?>
+                <!-- for not logged in users -->
+                <li <?php if ($this->checkForActiveControllerAndAction($filename, "login/index")) { echo ' class="active" '; } ?> >
+                    <a href="<?php echo URL; ?>login/index">Login</a>
+                </li>
+                <li <?php if ($this->checkForActiveControllerAndAction($filename, "login/register")) { echo ' class="active" '; } ?> >
+                    <a href="<?php echo URL; ?>login/register">Register</a>
+                </li>
+            <?php } ?>
+        </ul>
+
+        <!-- my account -->
+        <ul class="navigation right">
+        <?php if (Session::get('user_logged_in') == true) : ?>
+            <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
+                <a href="<?php echo URL; ?>login/showprofile">My Account</a>
+                <ul class="navigation-submenu">
+                    <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
+                        <a href="<?php echo URL; ?>login/editusername">Edit my username</a>
+                    </li>
+                    <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
+                        <a href="<?php echo URL; ?>login/edituseremail">Edit my email</a>
+                    </li>
+                    <li <?php if ($this->checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
+                        <a href="<?php echo URL; ?>login/logout">Logout</a>
+                    </li>
+                </ul>
+            </li>
+        <?php endif; ?>
+        </ul>

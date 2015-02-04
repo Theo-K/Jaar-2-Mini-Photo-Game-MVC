@@ -1,43 +1,32 @@
 body {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
+    font-weight: 400;
     font-size: 14px;
+}
+.wrapper {
+    width: 960px;
+    margin: 0 auto;
 }
 .logo {
     font-size: 100px;
     font-weight: bolder;
     letter-spacing: -6px;
-    color: #222;
+    color: #454545;
     margin: 20px 30px;
 }
 .logo .number {
-    color: #222;
+    color: #454545;
     opacity: 0.1;
 }
-.navigation {
-    margin-left: 33px;
-}
-.navigation a {
-    display: inline-block;
-    padding: 10px 15px;
-    text-decoration: none;
-    font-size: 14px;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: 2px solid #222;
-    background: #222;
-    color: #fff;
-}
-.navigation a:hover {
-    color: #222;
-    background: transparent;
-}
 .container {
-    border: 1px solid #ddd;
+    max-width: 960px;
+    border: 1px solid #ccc;
     padding: 20px;
-    margin: 33px;
+    margin: 30px 0 30px 0;
+    overflow: hidden;
 }
 .container a {
-    color: #222;
+    color: #454545;
 }
 .container table {
     font-size: 11px;
@@ -79,89 +68,201 @@ body {
     color: #fff;
 }
 
+
+
+/* navigation dropdown menu */
+.navigation, .navigation-submenu {
+    display: inline-block;
+    list-style: none;
+    /* btw this is necessary to remove most browsers's "hidden" default <ul> intent */
+    margin: 0;
+    padding: 0;
+}
+/* TODO */
+.navigation {
+}
+.navigation.right {
+    float: right;
+}
+.navigation li {
+    float: left;
+    margin-right: 5px;
+}
+.navigation .navigation-submenu {
+    display: none;
+}
+.navigation li a {
+    display: block;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 2px solid #454545;
+    background: #454545;
+    color: #fff;
+    float:none;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.navigation li:hover .navigation-submenu {
+    display: block;
+    position: absolute;
+    float: left;
+}
+.navigation li:hover li,
+.navigation li:hover a {
+    float: none;
+}
+.navigation li a:hover,
+.navigation li:hover li a:hover {
+    background: #fff;
+    color: #454545;
+}
+
+.navigation > li.active a {
+    background: #fff;
+    color: #454545;
+}
+.navigation > li.active li a {
+    background: #454545;
+    color: #fff;
+}
+
+/* overview */
+.overview-table img {
+    width: 40px;
+    height: 40px;
+}
+
+/* feedback boxes */
 .feedback {
-    border: 1px solid black;
-    color: black;
-    padding: 20px;
-    font-size: 16px;
-    margin-bottom: 35px;
+    padding: 30px;
+    margin-bottom: 10px;
 }
-
+.feedback.success {
+    color: #558f2d;
+    background-color: #ddf2c0;
+}
 .feedback.error {
-    border: 1px solid red;
-    color: red;
+    color: #ff7272;
+    background-color: #ffe5e5;
+}
+.feedback.info {
+    color: #00529B;
+    background-color: #BDE5F8;
 }
 
-.feedback.succes {
-    border: 1px solid green;
-    color: green;
+.header_right_box {
+    float: right;
 }
 
-/* input boxes */
-/* html5 reset. this is necessary to properly align input fields in html5 */
-input, select, textarea {
-box-sizing: border-box;
--moz-box-sizing: border-box;
--webkit-box-sizing: border-box;
+/* login screen */
+.login-page-box {
+    display: table;
+    width: 100%;
 }
-label {
-display: block;
-margin-bottom: 5px;
-line-height: 20px;
-}
-input {
-display: block;
-margin-bottom: 15px;
-min-width: 200px;
-padding: 10px;
-}
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-border: 1px solid #ddd;
-color: #555;
-font-weight: bold;
-/*padding: 10px; */
-/*
-border: 0;
-background-color: #eaedf2;
-color: #777;
-font-weight: bold;
-padding: 15px;
-*/
-}
-input[type="submit"] {
-border: 0;
-background-color: #2C2F3B;
-color: #fff;
-font-weight: bold;
-/*padding: 10px;*/
-cursor: pointer;
-}
-.remember-me-checkbox {
-float: left; min-width: 0; margin: 3px 10px 15px 0;
-}
-.remember-me-label {
-float:left; min-width: 0; font-size: 12px; color: #888;
-}
-.login-submit-button {
-float: none; clear: both;
-}
-.login-form-password-pattern-reminder {
-display: block;
-/*width: 200px;*/
-color: #999;
-font-size: 11px;
+.login-page-box .table-wrapper {
+    display: table-row;
 }
 
-.login-default-box,
-.login-facebook-box {
-display: inline-block;
-width: 300px;
-vertical-align: top;
+.login-box {
+    display: table-cell;
+    margin: 0;
+    color: #777;
+    background-color: #f4f3f1;
+    padding: 20px 50px 45px 50px;
+    width: 49%;
+    box-sizing: border-box;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.login-box h2 {
+    color: #252525;
+}
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    font-family: Arial, sans-serif;
+    color: #252525;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box; /* modern way to say width:100% without padding */
+    /*text-transform: uppercase;*/
+}
+.login-box input[type="submit"] {
+    color: #777;
+    background-color: transparent;
+    border: 2px solid #777;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box; /* modern way to say width:100% without padding */
+    text-transform: uppercase;
+}
+.login-box input[type="submit"]:hover {
+    color: #fff;
+    border-color: #252525;
+    background-color: #252525;
+}
+.login-box .remember-me-label {
+    display: block;
+    margin-bottom: 10px;
+}
+.login-box .link-forgot-my-password {
+    display: block;
+    text-align: right;
+}
+.login-box .link-forgot-my-password a {
+    color: #777;
+    text-decoration: none;
+}
+.login-box .link-forgot-my-password a:hover {
+    text-decoration: underline;
+}
+.login-box ::-webkit-input-placeholder { color: #777; opacity: 0.5; }
+.login-box ::-moz-placeholder { color: #777; opacity: 0.5; }
+.login-box :-ms-input-placeholder { color: #777; opacity: 0.5; }
+.login-box input:-moz-placeholder { color: #777; opacity: 0.5; }
+
+.register-box {
+    display: table-cell;
+    color: #fff;
+    background-color: #252525;
+    padding: 20px 50px 45px 50px;
+    width: 49%;
+    box-sizing: border-box;
+    font-weight: 400;
+    margin: 0;
+    text-transform: uppercase;
+}
+.register-box h2 {
+    color: #fff;
+}
+.register-box a {
+    width: 100%;
+    display: block;
+    box-sizing: border-box; /* modern way to say width:100% without padding */
+    background-color: transparent;
+    border: 2px solid #fff;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+}
+.register-box a:hover {
+    background-color: #ffffff;
+    color: #252525;
 }
 
 img {
     width: 100%;
     height: auto;
+}
+
+.photo {
+    float: left;
+    margin-right: 20px;
 }

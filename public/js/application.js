@@ -1,31 +1,86 @@
+var map;
+var marker;
+var disabled = false;
+
+function initialize() {
+      var mapOptions = {
+        center: { lat: 52.100833, lng: 5.646111 },
+        zoom: 7
+      };
+      map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
+
+      function placeMarker(location) {
+        if ( !disabled) {
+          if ( marker ) {
+            marker.setPosition(location);
+          } else {
+            marker = new google.maps.Marker({
+              position: location,
+              icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+              map: map
+            });
+          }
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+          setTimeout(function(){marker.setAnimation(null)},500);
+          map.panTo(marker.getPosition());
+        }
+      }
+
+      google.maps.event.addListener(map, 'click', function(event) {
+        placeMarker(event.latLng);
+      });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+
 $(function() {
 
-    // just a super-simple JS demo
-
-    var demoHeaderBox;
-
-    // simple demo to show create something via javascript on the page
-    if ($('#javascript-header-demo-box').length !== 0) {
-    	demoHeaderBox = $('#javascript-header-demo-box');
-    	demoHeaderBox
-    		.hide()
-    		.text('Hello from JavaScript! This line has been added by public/js/application.js')
-    		.css('color', 'green')
-    		.fadeIn('slow');
-    }
-
     // if #javascript-ajax-button exists
-    if ($('#javascript-ajax-button').length !== 0) {
+    if ($('#guess').length !== 0) {
 
-        $('#javascript-ajax-button').on('click', function(){
+        $('#guess').on('click', function(){
 
             // send an ajax-request to this URL: current-server.com/songs/ajaxGetStats
             // "url" is defined in views/_templates/footer.php
-            $.ajax(url + "/songs/ajaxGetStats")
+
+            photoid = $('#photo').data('photoid');
+
+            $.ajax(url + "/game/checkLocation/" + photoid )
                 .done(function(result) {
                     // this will be executed if the ajax-call was successful
                     // here we get the feedback from the ajax-call (result) and show it in #javascript-ajax-result-box
-                    $('#javascript-ajax-result-box').html(result);
+                    var location = $.parseJSON(result);
+
+                    var photoloc = new google.maps.LatLng(51.817583333333, 4.7743138888889);
+                    var markerloc = marker.getPosition();
+
+                    var photomarker = new google.maps.Marker({
+                      position: photoloc,
+                      icon: 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png',
+                      map: map
+                    });
+                    disabled = true;
+
+                    var line = [
+                      photoloc,
+                      markerloc
+                    ];
+
+                    var markerline = new google.maps.Polyline({
+                      path: line,
+                      geodesic: true,
+                      strokeColor: '#FF0000',
+                      strokeOpacity: 1.0,
+                      strokeWeight: 4
+                      });
+
+                    markerline.setMap(map);
+
+                    var distance = google.maps.geometry.spherical.computeDistanceBetween(photoloc, markerloc);
+                    console.log(Math.floor(distance / 1000));
+                    
+                    setTimeout(function(){window.location.assign(url + "game/score/" + photoid + "/" + distance)},1500);
+                    
                 })
                 .fail(function() {
                     // this will be executed if the ajax-call had failed

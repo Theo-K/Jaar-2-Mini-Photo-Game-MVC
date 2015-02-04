@@ -19,6 +19,10 @@ class Controller
     {
         Session::init();
 
+        if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
+            header('location: ' . URL . 'login/loginWithCookie');
+        }
+
         $this->openDatabaseConnection();
 
         try {
@@ -53,7 +57,6 @@ class Controller
     public function loadModel($name)
     {
         $path = MODEL . strtolower($name) . '_model.php';
-
         if (file_exists($path)) {
             require MODEL . strtolower($name) . '_model.php';
             // The "Model" has a capital letter as this is the second part of the model class name,

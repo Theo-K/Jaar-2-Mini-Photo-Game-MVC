@@ -24,7 +24,6 @@ define('MODEL', APP . 'model' . DIRECTORY_SEPARATOR);
 
 define('UPLOAD_PATH', ROOT . 'public' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR);
 
-
 // This is the (totally optional) auto-loader for Composer-dependencies (to load tools into your project).
 // If you have no idea what this means: Don't worry, you don't need it, simply leave it like it is.
 if (file_exists(ROOT . 'vendor/autoload.php')) {

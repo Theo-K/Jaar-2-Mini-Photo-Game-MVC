@@ -1,4 +1,11 @@
 <div class="container">
-    <h2>You are in the View: application/view/home/index.php (everything in the box comes from this file)</h2>
-    <p>In a real application this could be the homepage.</p>
+    <h1>Welcome to GeoApp</h1>
+    <div class="box">
+
+		<!-- echo out the system feedback (error and success messages) -->
+    	<?php $this->renderFeedbackMessages(); ?>
+
+		<h3>What is the GeoApp game?</h3>
+    	<p>GeoApp is fun browser based game played with photos taken by our users. Points are earned by trying to guess the location a photo was taken as accuratly as possible.</p>
+	</div>
 </div>
