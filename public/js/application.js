@@ -17,17 +17,17 @@ function initialize() {
           } else {
             marker = new google.maps.Marker({
               position: location,
-              icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+              icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
               map: map
             });
           }
           marker.setAnimation(google.maps.Animation.BOUNCE);
           setTimeout(function(){marker.setAnimation(null)},500);
-          map.panTo(marker.getPosition());
+          
         }
       }
 
-      google.maps.event.addListener(map, 'click', function(event) {
+        google.maps.event.addListener(map, 'click', function(event) {
         placeMarker(event.latLng);
       });
     }
@@ -56,7 +56,7 @@ $(function() {
 
                     var photomarker = new google.maps.Marker({
                       position: photoloc,
-                      icon: 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png',
+                      icon: 'http://maps.google.com/mapfiles/ms/icons/pink-dot.png',
                       map: map
                     });
                     disabled = true;
@@ -79,7 +79,7 @@ $(function() {
                     var distance = google.maps.geometry.spherical.computeDistanceBetween(photoloc, markerloc);
                     console.log(Math.floor(distance / 1000));
                     
-                    setTimeout(function(){window.location.assign(url + "game/score/" + photoid + "/" + distance)},1500);
+                    window.location.assign(url + "game/score/" + photoid + "/" + distance);
                     
                 })
                 .fail(function() {

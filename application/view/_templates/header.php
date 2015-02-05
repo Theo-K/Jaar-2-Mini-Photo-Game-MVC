@@ -23,13 +23,13 @@
             <?php if (Session::get('user_logged_in') == true) { ?>
                 <!-- for logged in users -->
                 <li <?php if ($this->checkForActiveController($filename, "dashboard")) { echo ' class="active" '; } ?> >
-                    <a href="<?php URL; ?>../dashboard/index">Dashboard</a>
+                    <a href="<?php echo URL; ?>dashboard/index">Dashboard</a>
                 </li>            
-                <li>
-                	<a href="<?php URL; ?>../photo/index">Photos</a>
+                <li <?php if ($this->checkForActiveController($filename, "photo")) { echo ' class="active" '; } ?> >
+                	<a href="<?php echo URL; ?>photo/index">Photos</a>
                 </li>
-                <li>
-					<a href="<?php URL; ?>../game/index">Play</a>
+                <li <?php if ($this->checkForActiveController($filename, "game")) { echo ' class="active" '; } ?> >
+					<a href="<?php echo URL; ?>game/index">Play</a>
                 </li>
             <?php } else { ?>
                 <!-- for not logged in users -->

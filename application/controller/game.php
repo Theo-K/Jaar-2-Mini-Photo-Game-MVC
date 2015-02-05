@@ -36,8 +36,24 @@ Class Game extends Controller {
 	public function score($id, $distance){
 		$this->model = $this->loadModel('game');
 
-		$this->model->insertScore($id, $distance,  $_SESSION['user_id']);
+
+        if (!$this->model->getYourScore($id, Session::get('user_id'))) {
+            $this->model->insertScore($id, $distance, Session::get('user_id'));
+        }
+
+		header('location: ' . URL . 'game/highscores/' . $id);
+	}
+
+	public function highscores($id){
+		$this->model = $this->loadModel('game');
+
+		$this->view->scorePhoto = $this->model->getPhoto($id);
+
+		$this->view->userScore = $this->model->getYourScore($id, Session::get('user_id'));
+
+		$this->view->game = $this->model->getScores($id);
 
 		$this->view->render('game/score');	
 	}
 }
+
